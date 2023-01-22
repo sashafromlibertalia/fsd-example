@@ -8,9 +8,16 @@
 # testing
 /coverage
 
-# next.js
+# next.web
 /.next/
 /out/
+build
+.next
+dist
+.dist
+
+__snapshot__
+__snapshots__
 
 # production
 /build
@@ -26,11 +33,26 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env*.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+
+
+# IDE folder
+.idea
+
+# VS code
+.vscode
+
+# Sentry
+.sentryclirc
+
+*.csv
