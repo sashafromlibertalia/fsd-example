@@ -12,9 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <p>
-          <a href="https://nextjs.org/docs">Documentation &rarr;</a>
-        </p>
+
       </main>
     </>
   );
