@@ -1,7 +1,7 @@
 version: "3"
 
 env:
-  COMPOSE_PROJECT_NAME: feature-sliced-example
+  COMPOSE_PROJECT_NAME: fsd-example
   PROJECT_ID: 003
   DOCKER_BUILDKIT: 1
 

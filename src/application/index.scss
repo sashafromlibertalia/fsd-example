@@ -1,13 +1,11 @@
+@import 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap';
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-* {
-  margin: 0;
 }
 
 html,
@@ -62,19 +60,27 @@ input[type='number'] {
 
 button {
   cursor: pointer;
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-#root,
-#__next {
-  isolation: isolate;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+
+div,
+span,
+p {
+  font-family: 'IBM Plex Sans', sans-serif;
 }

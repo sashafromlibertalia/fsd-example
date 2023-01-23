@@ -1,6 +1,6 @@
 # feature-sliced design app example
 
-This is an example app built with [feature-sliced](https://feature-sliced.design/) methodology.
+This is an example app built with [feature-sliced design](https://feature-sliced.design/) methodology.
 
 ## Run project
 

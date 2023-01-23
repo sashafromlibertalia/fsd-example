@@ -2,8 +2,11 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:react/recommended",
+    "plugin:effector/recommended",
+    "plugin:effector/scope",
     "@builtbysasha/eslint-config/react-ts"
   ],
+  "plugins": ["effector"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
