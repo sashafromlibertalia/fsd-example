@@ -1,15 +1,25 @@
-import { Currency } from "@/entities/currency";
 import { FC } from "react";
 import styles from "./Table.module.scss";
 import { useRouter } from "next/router";
+import { useList, useStore } from "effector-react";
+import { $listings } from "@/entities/currency/model";
+import { MessageBox } from "@/shared/ui";
 
-export type TableProps = {
-  data: Currency[];
-}
-
-export const Table: FC<TableProps> = (props) => {
-  const { data } = props;
+export const Table: FC = () => {
   const router = useRouter();
+  const listings = useStore($listings);
+  const tableRows = useList($listings, (currency) => (
+    <tr key={currency.id} onClick={() => router.push(`/currency/${currency.id}`)}>
+      <td>{currency.id}</td>
+      <td>{currency.name}</td>
+      <td>{currency.symbol}</td>
+      <td>{currency.maxSupply}</td>
+      <td>{currency.priceUsd}</td>
+    </tr>
+  ));
+
+  if (!listings.length)
+    return <MessageBox message={"No data to display"} variant={"warning"} />;
 
   return (
     <table className={styles.table}>
@@ -24,15 +34,7 @@ export const Table: FC<TableProps> = (props) => {
       </thead>
       <tbody>
         {
-          data.map((currency) => (
-            <tr key={currency.id} onClick={() => router.push(`/currency/${currency.id}`)}>
-              <td>{currency.id}</td>
-              <td>{currency.name}</td>
-              <td>{currency.symbol}</td>
-              <td>{currency.maxSupply}</td>
-              <td>{currency.priceUsd}</td>
-            </tr>
-          ))
+          tableRows
         }
       </tbody>
     </table>

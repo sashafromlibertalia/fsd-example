@@ -1,0 +1,13 @@
+@import 'src/application/shared';
+
+.box {
+  width: 20rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: $gray-100-light;
+  border-radius: .5rem;
+
+  @media (prefers-color-scheme: dark) {
+    background: $gray-100-dark;
+  }
+}
