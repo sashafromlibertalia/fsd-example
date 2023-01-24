@@ -3,7 +3,7 @@ import styles from "./MessageBox.module.scss";
 
 type MessageBoxProps = {
   message: string;
-  variant: "warning";
+  variant: "warning" | "error";
 }
 
 export const MessageBox: FC<MessageBoxProps> = (props) => {
@@ -11,14 +11,15 @@ export const MessageBox: FC<MessageBoxProps> = (props) => {
 
   return (
     <div className={styles.box}>
-      {
-        variant === "warning" && (
-          <>
-            <h3>⚠️ Warning</h3>
-            <p>{message}</p>
-          </>
-        )
-      }
+      <h3>
+        {
+          variant === "warning" && "⚠️ Warning"
+        }
+        {
+          variant === "error" && "❌ Error"
+        }
+      </h3>
+      <p>{message}</p>
     </div>
   );
 };

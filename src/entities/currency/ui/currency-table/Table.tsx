@@ -2,7 +2,11 @@ import { FC, useEffect } from "react";
 import styles from "./Table.module.scss";
 import { useRouter } from "next/router";
 import { useList, useStore } from "effector-react";
-import { $isListingsFetched, $isListingsFetching, $listings, fetchListingsFx } from "@/entities/currency/model";
+import {
+  $listings,
+  $listingsStatus,
+  fetchListingsFx,
+} from "@/entities/currency/model";
 import { MessageBox } from "@/shared/ui";
 import { useEvent } from "effector-react/effector-react.umd";
 import { Oval } from "react-loader-spinner";
@@ -11,8 +15,7 @@ export const Table: FC = () => {
   const router = useRouter();
 
   const listings = useStore($listings);
-  const isFetching = useStore($isListingsFetching);
-  const isFetched = useStore($isListingsFetched);
+  const { isFetching, isFetched, isError } = useStore($listingsStatus);
 
   const fetchListings = useEvent(fetchListingsFx);
 
@@ -42,6 +45,10 @@ export const Table: FC = () => {
 
   if (isFetched && !listings.length) {
     return <MessageBox message={"No data found."} variant={"warning"} />;
+  }
+
+  if (isError) {
+    return <MessageBox message={"Something went wrong."} variant={"error"} />;
   }
 
   return (

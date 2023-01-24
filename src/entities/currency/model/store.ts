@@ -1,4 +1,4 @@
-import { createEffect, createStore } from "effector";
+import { combine, createEffect, createStore } from "effector";
 import { Currency } from "@/entities/currency/model";
 import { fetchCoinMetadataAsync, fetchCryptoListingsAsync } from "@/entities/currency/api";
 
@@ -13,6 +13,7 @@ export const fetchCoinMetadataFx = createEffect(async (coinId: number) => {
 });
 
 export const $isListingsFetching = fetchListingsFx.pending;
+export const $isListingsFetchingError = createStore<boolean>(false).on(fetchListingsFx.fail, () => true);
 export const $isListingsFetched = createStore<boolean>(false).on(fetchListingsFx.done, () => true);
 $listings.on(fetchListingsFx.doneData, (data, payload) => {
   const response = payload.data;
@@ -29,5 +30,10 @@ $listings.on(fetchListingsFx.doneData, (data, payload) => {
   return [...data, ...listings];
 });
 
+export const $listingsStatus = combine({
+  isFetching: $isListingsFetching,
+  isError: $isListingsFetchingError,
+  isFetched: $isListingsFetched,
+});
 
 export const $isCoinMetadataFetching = fetchCoinMetadataFx.pending;
