@@ -52,21 +52,23 @@ export const Table: FC = () => {
   }
 
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Symbol</th>
-          <th>Max supply</th>
-          <th>Price (USD)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          tableRows
-        }
-      </tbody>
-    </table>
+    <div className={styles.table__wrapper}>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Max supply</th>
+            <th>Price (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            tableRows
+          }
+        </tbody>
+      </table>
+    </div>
   );
 };

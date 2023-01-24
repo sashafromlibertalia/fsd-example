@@ -7,11 +7,11 @@
   background: $gray-100-light;
   border-radius: .5rem;
 
-  @media (prefers-color-scheme: dark) {
-    background: $gray-100-dark;
-  }
-
   p {
     margin-top: .5rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: $gray-100-dark;
   }
 }

@@ -3,13 +3,7 @@
 .table {
   width: 100%;
   margin-top: 2rem;
-  padding: 1rem;
   border-collapse: collapse;
-
-  &__spinner {
-    display: block;
-    margin-top: 1rem;
-  }
 
   tbody tr {
     transition: 200ms all ease-in-out;
@@ -27,6 +21,7 @@
   }
 
   th {
+    padding-bottom: .5rem;
     font-size: 1.25rem;
     font-family: 'JetBrains Mono', monospace;
     text-align: left;
@@ -57,5 +52,24 @@
   tr:not(:last-child),
   thead tr {
     border-bottom: 1px solid;
+  }
+
+  @media screen and (max-width: 864px) {
+    th {
+      padding: 0 1rem;
+    }
+
+    td {
+      padding: 1rem;
+    }
+
+    &__wrapper {
+      overflow-x: scroll;
+    }
+  }
+
+  &__spinner {
+    display: block;
+    margin-top: 1rem;
   }
 }

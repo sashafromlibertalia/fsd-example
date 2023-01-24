@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "@builtbysasha/eslint-config": "^1.0.0",
-    "@builtbysasha/stylelint": "^1.0.6"
+    "@builtbysasha/stylelint": "^1.0.10"
   }
 }
