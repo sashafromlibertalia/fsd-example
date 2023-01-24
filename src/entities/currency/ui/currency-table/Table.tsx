@@ -1,13 +1,21 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styles from "./Table.module.scss";
 import { useRouter } from "next/router";
 import { useList, useStore } from "effector-react";
-import { $listings } from "@/entities/currency/model";
+import { $isListingsFetched, $isListingsFetching, $listings, fetchListingsFx } from "@/entities/currency/model";
 import { MessageBox } from "@/shared/ui";
+import { useEvent } from "effector-react/effector-react.umd";
+import { Oval } from "react-loader-spinner";
 
 export const Table: FC = () => {
   const router = useRouter();
+
   const listings = useStore($listings);
+  const isFetching = useStore($isListingsFetching);
+  const isFetched = useStore($isListingsFetched);
+
+  const fetchListings = useEvent(fetchListingsFx);
+
   const tableRows = useList($listings, (currency) => (
     <tr key={currency.id} onClick={() => router.push(`/currency/${currency.id}`)}>
       <td>{currency.id}</td>
@@ -18,8 +26,23 @@ export const Table: FC = () => {
     </tr>
   ));
 
-  if (!listings.length)
-    return <MessageBox message={"No data to display"} variant={"warning"} />;
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  if (isFetching) {
+    return <span className={styles.table__spinner}>
+      <Oval height={80} width={80}
+        wrapperStyle={{}} wrapperClass=""
+        visible={true} ariaLabel='oval-loading'
+        color="#0b6efd"  secondaryColor="#0B6EFD80"
+        strokeWidth={2} strokeWidthSecondary={2} />
+    </span>;
+  }
+
+  if (isFetched && !listings.length) {
+    return <MessageBox message={"No data found."} variant={"warning"} />;
+  }
 
   return (
     <table className={styles.table}>

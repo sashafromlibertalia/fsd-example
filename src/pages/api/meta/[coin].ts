@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { apiCmc } from "@/shared/api";
+import { api } from "@/shared/api";
 import { AxiosError } from "axios";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
     const { coin } = req.query;
-    const { data } = await apiCmc.get("v2/cryptocurrency/info", {
+    const { data } = await api.get("v2/cryptocurrency/info", {
       params: {
         id: coin,
       },

@@ -6,6 +6,11 @@
   padding: 1rem;
   border-collapse: collapse;
 
+  &__spinner {
+    display: block;
+    margin-top: 1rem;
+  }
+
   tbody tr {
     transition: 200ms all ease-in-out;
     cursor: pointer;

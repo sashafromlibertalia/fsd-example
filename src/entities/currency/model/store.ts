@@ -1,10 +1,33 @@
 import { createEffect, createStore } from "effector";
-import { apiCmc } from "@/shared/api";
 import { Currency } from "@/entities/currency/model";
+import { fetchCoinMetadataAsync, fetchCryptoListingsAsync } from "@/entities/currency/api";
 
 export const $listings = createStore<Currency[]>([]);
 
 export const fetchListingsFx = createEffect(async () => {
-  const { data } = await apiCmc.get("v1/cryptocurrency/listings/latest");
-  return data.data;
+  return fetchCryptoListingsAsync();
 });
+
+export const fetchCoinMetadataFx = createEffect(async (coinId: number) => {
+  return fetchCoinMetadataAsync(coinId);
+});
+
+export const $isListingsFetching = fetchListingsFx.pending;
+export const $isListingsFetched = createStore<boolean>(false).on(fetchListingsFx.done, () => true);
+$listings.on(fetchListingsFx.doneData, (data, payload) => {
+  const response = payload.data;
+  const listings: Currency[] = response.map((item: any) => {
+    return {
+      id: item.id,
+      name: item.name,
+      symbol: item.symbol,
+      maxSupply: item.max_supply,
+      priceUsd: item.quote.USD.price,
+    } as Currency;
+  });
+
+  return [...data, ...listings];
+});
+
+
+export const $isCoinMetadataFetching = fetchCoinMetadataFx.pending;
