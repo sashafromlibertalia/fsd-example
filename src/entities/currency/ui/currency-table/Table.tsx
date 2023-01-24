@@ -1,6 +1,7 @@
 import { Currency } from "@/entities/currency";
 import { FC } from "react";
 import styles from "./Table.module.scss";
+import { useRouter } from "next/router";
 
 export type TableProps = {
   data: Currency[];
@@ -8,6 +9,7 @@ export type TableProps = {
 
 export const Table: FC<TableProps> = (props) => {
   const { data } = props;
+  const router = useRouter();
 
   return (
     <table className={styles.table}>
@@ -23,7 +25,7 @@ export const Table: FC<TableProps> = (props) => {
       <tbody>
         {
           data.map((currency) => (
-            <tr key={currency.id}>
+            <tr key={currency.id} onClick={() => router.push(`/currency/${currency.id}`)}>
               <td>{currency.id}</td>
               <td>{currency.name}</td>
               <td>{currency.symbol}</td>

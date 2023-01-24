@@ -1,10 +1,11 @@
 @import 'src/application/shared';
 
 .pagination {
-  gap: 1rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
 
   &__page {
     width: 2.5rem;
@@ -14,6 +15,10 @@
     border-radius: .5rem;
     transition: 250ms all ease-in-out;
 
+    &:hover {
+      background: $gray-300-light;
+    }
+
     @media (prefers-color-scheme: dark) {
       color: $white;
       background: $gray-100-dark;
@@ -22,20 +27,16 @@
         background: $gray-300-dark;
       }
     }
-
-    &:hover {
-      background: $gray-300-light;
-    }
   }
 
   &__page_active,
   &__page_active:hover {
     color: $white;
-    background: $gray-600-light;
+    background: $blue-500-light;
 
     @media (prefers-color-scheme: dark) {
       color: $white;
-      background: $gray-600-dark;
+      background: $blue-500-dark;
     }
   }
 }

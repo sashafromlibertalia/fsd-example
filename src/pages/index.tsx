@@ -1,8 +1,7 @@
 import Head from "next/head";
 import styles from "@/application/Home.module.scss";
 import { NextPage } from "next";
-import { Table } from "@/features/Table";
-import { Currency } from "@/entities/currency";
+import { Currency, Table } from "@/entities/currency";
 
 const Home: NextPage = () => {
   const mockData: Currency[] = [
@@ -19,6 +18,13 @@ const Home: NextPage = () => {
       symbol: "ETH",
       maxSupply: 100000000,
       priceUsd: 1000,
+    },
+    {
+      id: 3,
+      name: "Litecoin",
+      symbol: "LTC",
+      maxSupply: 84000000,
+      priceUsd: 100,
     },
   ];
 
