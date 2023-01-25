@@ -51,30 +51,33 @@ export const Table: FC = () => {
     return <MessageBox message={"Something went wrong."} variant={"error"} />;
 
   return (
-    <div className={styles.table__wrapper}>
+    <>
       {
         isFetched && listings.length > 0 && (
           <>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Symbol</th>
-                  <th>Max supply</th>
-                  <th>Price (USD)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  tableRows
-                }
-              </tbody>
-            </table>
+            <div className={styles.table__wrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Max supply</th>
+                    <th>Price (USD)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    tableRows
+                  }
+                </tbody>
+              </table>
+            </div>
             <Pagination activePage={page} total={5} onChange={(page) => setPage(page)} />
           </>
         )
       }
-    </div>
+    </>
+
   );
 };
