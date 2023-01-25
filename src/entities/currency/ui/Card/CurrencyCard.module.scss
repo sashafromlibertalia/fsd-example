@@ -1,0 +1,39 @@
+@import 'src/shared/ui/styles/shared';
+
+.card {
+  width: 30rem;
+  padding: 1rem;
+  background: #f1f1f1;
+  border: 2px solid $gray-300-light;
+  border-radius: .75rem;
+
+  @media (prefers-color-scheme: dark) {
+    background: $gray-100-dark;
+    border: 2px solid $gray-300-dark;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    gap: .5rem;
+  }
+
+  &__tag {
+    padding: .25rem .75rem;
+    color: white;
+    background: $blue-500-light;
+    border-radius: 2rem;
+
+    @media (prefers-color-scheme: dark) {
+      background: $blue-500-dark;
+    }
+  }
+
+  &__flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+    gap: 1rem;
+  }
+}

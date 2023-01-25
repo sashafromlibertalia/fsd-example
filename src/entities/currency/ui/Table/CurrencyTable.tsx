@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import styles from "./Table.module.scss";
+import styles from "./CurrencyTable.module.scss";
 import { useRouter } from "next/router";
 import { useList, useStore } from "effector-react";
 import {
@@ -44,33 +44,37 @@ export const Table: FC = () => {
     </span>;
   }
 
-  if (isFetched && !listings.length) {
+  if (isFetched && !listings.length)
     return <MessageBox message={"No data found."} variant={"warning"} />;
-  }
 
-  if (isError) {
+  if (isError)
     return <MessageBox message={"Something went wrong."} variant={"error"} />;
-  }
 
   return (
     <div className={styles.table__wrapper}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Max supply</th>
-            <th>Price (USD)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            tableRows
-          }
-        </tbody>
-      </table>
-      <Pagination activePage={page} total={5} onChange={(page) => setPage(page)} />
+      {
+        isFetched && listings.length > 0 && (
+          <>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Symbol</th>
+                  <th>Max supply</th>
+                  <th>Price (USD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  tableRows
+                }
+              </tbody>
+            </table>
+            <Pagination activePage={page} total={5} onChange={(page) => setPage(page)} />
+          </>
+        )
+      }
     </div>
   );
 };

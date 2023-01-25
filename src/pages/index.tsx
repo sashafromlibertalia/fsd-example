@@ -1,7 +1,7 @@
 import Head from "next/head";
-import styles from "@/application/Home.module.scss";
 import { NextPage } from "next";
 import { Table } from "@/entities/currency/ui";
+import { Container } from "@/shared/ui/layout";
 
 const Home: NextPage = () => {
   return (
@@ -12,11 +12,13 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.container}>
-        <h1>Currency listing table</h1>
-        <p>You can click on the table row and inspect the specific currency.</p>
-        <Table />
-      </main>
+      <Container>
+        <main>
+          <h1>Currency listing table</h1>
+          <p>You can click on the table row and inspect the specific currency.</p>
+          <Table />
+        </main>
+      </Container>
     </>
   );
 };

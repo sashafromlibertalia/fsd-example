@@ -1,1 +1,2 @@
-export * from "./currency-table/Table";
+export * from "./Table/CurrencyTable";
+export * from "./Card/CurrencyCard";

@@ -5,3 +5,12 @@ export type Currency = {
   maxSupply: number;
   priceUsd: number;
 };
+
+export type CurrencyMetadata = {
+  id: number;
+  name: string;
+  symbol: string;
+  logoUrl: string;
+  description: string;
+  tags: string[];
+};
