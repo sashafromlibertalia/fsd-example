@@ -2,9 +2,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { api } from "@/shared/api";
 import { AxiosError } from "axios";
 
+const limit = 5;
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
-    const { data } = await api.get("v1/cryptocurrency/listings/latest");
+    const { page } = req.query;
+    const { data } = await api.get("v1/cryptocurrency/listings/latest", {
+      params: {
+        start: (+(page || 1) - 1) * limit + 1,
+        limit,
+      },
+    });
+    console.log(data.data.length);
     res.status(200).json(data);
   }
   catch (e) {

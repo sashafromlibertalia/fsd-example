@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Table.module.scss";
 import { useRouter } from "next/router";
 import { useList, useStore } from "effector-react";
@@ -7,12 +7,13 @@ import {
   $listingsStatus,
   fetchListingsFx,
 } from "@/entities/currency/model";
-import { MessageBox } from "@/shared/ui";
+import { MessageBox, Pagination } from "@/shared/ui";
 import { useEvent } from "effector-react/effector-react.umd";
 import { Oval } from "react-loader-spinner";
 
 export const Table: FC = () => {
   const router = useRouter();
+  const [page, setPage] = useState(1);
 
   const listings = useStore($listings);
   const { isFetching, isFetched, isError } = useStore($listingsStatus);
@@ -30,8 +31,8 @@ export const Table: FC = () => {
   ));
 
   useEffect(() => {
-    fetchListings();
-  }, []);
+    fetchListings(page);
+  }, [page]);
 
   if (isFetching) {
     return <span className={styles.table__spinner}>
@@ -69,6 +70,7 @@ export const Table: FC = () => {
           }
         </tbody>
       </table>
+      <Pagination activePage={page} total={5} onChange={(page) => setPage(page)} />
     </div>
   );
 };
