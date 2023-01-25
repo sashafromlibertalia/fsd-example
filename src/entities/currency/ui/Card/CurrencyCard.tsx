@@ -9,7 +9,6 @@ type CardProps = {
 
 export const Card: FC<CardProps> = (props) => {
   const { data } = props;
-  console.log(data.logoUrl);
 
   return (
     <div className={styles.card}>

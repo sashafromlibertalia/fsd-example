@@ -7,6 +7,10 @@
   border: 2px solid $gray-300-light;
   border-radius: .75rem;
 
+  @media screen and (max-width: 568px) {
+    width: 100%;
+  }
+
   @media (prefers-color-scheme: dark) {
     background: $gray-100-dark;
     border: 2px solid $gray-300-dark;
@@ -32,6 +36,7 @@
 
   &__flex {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: .5rem;
     gap: 1rem;

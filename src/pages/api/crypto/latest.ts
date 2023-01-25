@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         limit,
       },
     });
-    console.log(data.data.length);
+
     res.status(200).json(data);
   }
   catch (e) {
